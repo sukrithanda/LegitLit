@@ -1,0 +1,53 @@
+/* CSS declarations go here */
+
+#login-buttons{
+  margin: 18px;
+  font-size: 14px;
+}
+
+.list-group-item{
+  height: 55px;
+}
+
+.bins-share{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.bins-share .input-group {
+  width: 30%;
+}
+
+.bins-share > div {
+  margin: 0 10px;
+}
+
+.rc-dropzone {
+  border: 2px dashed #0087F7;
+  border-radius: 5px;
+  background: white;
+  min-height: 100px;
+  padding: 24px 54px;
+  box-sizing: border-box;
+}
+.dz-message {
+  font-weight: 400;
+  text-align: center;
+  margin: 2em 0;
+  font-size: 20px;
+  vertical-align: middle;
+}
+.note {
+  font-size: 0.8em;
+  font-weight: 200;
+  display: block;
+  margin-top: 1.4rem;
+}
+
+.next {
+  margin-top: 30px;
+}
