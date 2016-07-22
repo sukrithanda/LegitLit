@@ -5,15 +5,15 @@ Meteor.startup(() => {
   Meteor.publish('papers_submit', function() {
     return papers_submit.find({ author: this.userId });
   });
-  Meteor.publish('papers-review', function(){
+  Meteor.publish('papers_review', function(){
     const user = Meteor.users.findOne(this.userId);
 
     if (!user) {return;}
 
     const email = user.emails[0].address;
 
-    return papers-review.find({
-      peers:{ $elemMatch: { $eq: email }}
+    return papers_submit.find({
+      reviewers:{ $elemMatch: { $eq: email }}
     });
   });
 });

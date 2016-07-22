@@ -7,8 +7,9 @@ import MyReviews from './my-reviews';
 export default (props) => {
   return (
     <div>
-      <Header />
-        {props.children}
+      <PaperSubmit />
+      <MySubmissions />
+      <MyReviews />
      </div>
   );
 }

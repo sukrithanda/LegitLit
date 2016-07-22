@@ -24,11 +24,11 @@ class PaperSubmit extends Component {
         files: files
       });
 
-    /*  Meteor.call('paper.insert', (files) => {
+      Meteor.call('paper.insert', files, () => {
         browserHistory.push(`/views/${paperId}`);
-      });*/
+      });
 
-       Meteor.call('paper.insert', files);
+      // Meteor.call('paper.insert', files);
   };
 
 
@@ -43,7 +43,6 @@ class PaperSubmit extends Component {
            <Dropzone ref="dropzone" className= "rc-dropzone" multiple = {false} accept = "application/pdf" onDrop={this.onDrop.bind(this)}>
              <div className="dz-message">Drop your Research paper in PDF form</div>
            </Dropzone>
-
 
           </div>
 

@@ -42,7 +42,7 @@ class MyReviews extends Component {
 
 export default createContainer(() => {
 
-  Meteor.subscribe('papers_submit');
+  Meteor.subscribe('papers_review');
 
 
   return { papers: papers_submit.find({}).fetch()};
