@@ -24,3 +24,5 @@ accounts-password
 sgslo:cmstyle
 cfs:standard-packages
 cfs:gridfs
+
+meteortoys:allthings

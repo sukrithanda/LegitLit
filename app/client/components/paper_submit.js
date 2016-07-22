@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+
 
 class PaperSubmit extends Component {
 
@@ -14,19 +16,6 @@ class PaperSubmit extends Component {
      };
 
   };
-  handleSubmit(event){
-    event.preventDefault();
-    Meteor.call('paper-submit.insert', this.refs.link.value, (error) => {
-      if(error){
-        this.setState({error: 'Enter a valid URL'});
-      }
-      else{
-        this.setState({error: ''});
-        this.refs.link.value = '';
-      }
-    });
-  };
-
 
   onDrop(files) {
       console.log('Received files: ', files);
@@ -34,6 +23,12 @@ class PaperSubmit extends Component {
       this.setState({
         files: files
       });
+
+    /*  Meteor.call('paper.insert', (files) => {
+        browserHistory.push(`/views/${paperId}`);
+      });*/
+
+       Meteor.call('paper.insert', files);
   };
 
 
@@ -49,10 +44,7 @@ class PaperSubmit extends Component {
              <div className="dz-message">Drop your Research paper in PDF form</div>
            </Dropzone>
 
-        /*{this.state.files.length > 0 ? <div>
-               <h2>Uploading {this.state.files.length} file...</h2>
-               <div>{this.state.files.map((file) => <img src={file.preview} /> )}</div>
-               </div> : null} */
+
           </div>
 
         </div>
@@ -61,5 +53,8 @@ class PaperSubmit extends Component {
     );
   };
 }
-
+/*{this.state.files.length > 0 ? <div>
+       <h2>Uploading {this.state.files.length} file...</h2>
+       <div>{this.state.files.map((file) => <img src={file.preview} /> )}</div>
+       </div> : null} */
 export default PaperSubmit;

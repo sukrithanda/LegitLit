@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {createContainer} from 'meteor/react-meteor-data';
-import {papers_submit, papers_review} from './../../imports/collections/papers';
+import {papers_submit} from './../../imports/collections/papers';
 import { Link } from 'react-router';
 
 class MyReviews extends Component {
@@ -42,8 +42,8 @@ class MyReviews extends Component {
 
 export default createContainer(() => {
 
-  Meteor.subscribe('papers_reviews');
+  Meteor.subscribe('papers_submit');
 
 
-  return { papers: papers_review.find({}).fetch()};
+  return { papers: papers_submit.find({}).fetch()};
 }, MyReviews);
