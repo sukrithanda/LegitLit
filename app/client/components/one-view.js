@@ -18,9 +18,10 @@ class OneView extends Component{
 
         //  return (<PDF data= {this.props.paper.fileObj} />);
           return(
-            <div>hello</div>
-
-
+            <div>
+                <h2> Reviews </h2>
+                
+            </div>
           );
 
       }
