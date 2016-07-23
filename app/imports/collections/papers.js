@@ -6,6 +6,9 @@ Meteor.methods({
       createdAt: new Date(),
       fileobj: file,
       reviewers: [],
+      reviews: [],
+      accepts: 0,
+      rejects: 0,
       author: this.userId
     });
   },
@@ -31,11 +34,12 @@ var createFileObj = function(fileObj, readStream, writeStream) {
   gm(readStream, fileObj.name()).stream().pipe(writeStream);
 };
 
-
 /*papers_submit = new FS.Collection("papers-submit", {
   paper: [
       new FS.Store.GridFS("paper_pdf", { transformWrite: createFileObj }),
-  ]
+  ],
+
+
 });*/
 
 export const papers_submit = new Mongo.Collection('papers_submit');

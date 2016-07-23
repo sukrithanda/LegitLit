@@ -26,3 +26,5 @@ cfs:standard-packages
 cfs:gridfs
 
 meteortoys:allthings
+ongoworks:pdf
+pascoual:pdfjs

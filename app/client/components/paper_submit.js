@@ -24,9 +24,20 @@ class PaperSubmit extends Component {
         files: files
       });
 
-      Meteor.call('paper.insert', files, () => {
+     var reader = new FileReader(); //create a reader according to HTML5 File API
+
+    reader.onload = function(event){
+      //var buffer = new Uint8Array(reader.result) // convert to binary
+
+      buffer = reader.result;
+      Meteor.call('paper.insert', buffer, () => {
         browserHistory.push(`/views/${paperId}`);
       });
+    }
+
+  //  reader.readAsArrayBuffer(files[0]); //read the file as arraybuffer
+    reader.readAsDataURL(files[0]);
+
 
       // Meteor.call('paper.insert', files);
   };

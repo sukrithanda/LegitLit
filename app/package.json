@@ -13,6 +13,10 @@
     "react-dom": "^15.2.1",
     "react-dropzone": "^3.5.3",
     "react-dropzone-component": "^1.0.4",
-    "react-router": "^2.5.2"
+    "react-pdf": "0.0.10",
+    "react-pdf-component": "0.0.1",
+    "react-pdfjs": "^1.0.7",
+    "react-router": "^2.5.2",
+    "simple-react-pdf": "^1.0.6"
   }
 }
