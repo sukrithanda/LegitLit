@@ -4,9 +4,11 @@ Meteor.methods({
  'paper.insert': function(file) {
     return papers_submit.insert({
       createdAt: new Date(),
+      address: "",
       fileobj: file,
       reviewers: [],
-      reviews: "",
+      reviews: [],
+      reviewed: [],
       accepts: 0,
       rejects: 0,
       author: this.userId,
@@ -21,7 +23,18 @@ Meteor.methods({
   'paper_review.update': function(paper, content) {
     return papers_submit.update(paper._id, {$set: { reviews: content } });
   },
-  
+
+  'paper_review.submit': function(paper, content, vote) {
+  //  return papers_submit.update(paper._id, {$set: { reviews: content } });
+    if(vote == true){
+      return papers_submit.update(paper._id, { $inc: {accepts: 1}});
+    }
+    else{
+      return papers_submit.update(paper._id, { $inc: {rejects: 1}});
+    }
+
+  },
+
   'paper.submit': function(paper_id) {
     return papers_submit.update(paper_id, {$set: { submitted: true }, });
   },

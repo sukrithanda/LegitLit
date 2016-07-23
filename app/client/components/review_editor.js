@@ -3,6 +3,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { papers_submit } from './../../imports/collections/papers';
 import ReviewMarkup from './review_markup';
 import ReviewViewer from './review_viewer';
+import ReviewVote from './review_vote';
+
 
 
 
@@ -14,8 +16,9 @@ class ReviewEditor extends Component {
     }
     return (
       <div>
-        <ReviewMarkup paper={this.props.paper} />
-        <ReviewViewer paper={this.props.paper} />
+          <ReviewMarkup paper={this.props.paper} />
+          <ReviewViewer paper={this.props.paper} />
+          <ReviewVote paper = {this.props.paper} />
       </div>
     );
   }

@@ -9,7 +9,7 @@
   height: 55px;
 }
 
-.bins-share{
+.review-vote{
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -18,11 +18,11 @@
   margin: 10px;
 }
 
-.bins-share .input-group {
+.review-vote .input-group {
   width: 30%;
 }
 
-.bins-share > div {
+.review-vote {
   margin: 0 10px;
 }
 

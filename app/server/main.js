@@ -16,5 +16,9 @@ Meteor.startup(() => {
       reviewers:{ $elemMatch: { $eq: email }},
       author:  {$ne: this.userId}
     });
+
+    Meteor.publish('userList', function (){
+      return Meteor.users.find({});
+    });
   });
 });
