@@ -4,6 +4,25 @@ import {papers_submit} from './../../imports/collections/papers';
 import { Link } from 'react-router';
 
 class MySubmissions extends Component {
+  
+  onPaperView(bin) {
+    Meteor.call('bins.remove', bin);
+  }
+
+  handleSubmit(id){
+      console.log("submit");
+      Meteor.call('paper.submit', id)
+  }
+
+  handleRemove(id){
+      console.log("remove");
+      Meteor.call('paper.remove', id);
+  }
+
+  handleStatus(url){
+      console.log("status");
+      location.href = url;
+  }
 
   renderList(){
 
@@ -15,14 +34,23 @@ class MySubmissions extends Component {
 
     return this.props.papers.map(paper =>{
       const url =`/view/${paper._id}`;
+
+      var button1;
+      var button2;
+      if (paper.submitted){
+          button1 = <Link to={url}><button className="btn btn-primary">Status</button></Link>
+      }
+      else{
+          button1 = <button className="btn btn-success" onClick={this.handleSubmit.bind(this, paper._id)}>Submit</button>
+          button2 = <button className="btn btn-danger" onClick={this.handleRemove.bind(this, paper._id)}>Remove</button>
+      }
+
       return(
         <li className="list-group-item" key={paper._id}>
           <Link to={url}> paper_submit {paper._id} </Link>
           <span className="pull-right">
-            <button
-              className="btn btn-danger">
-              STATUS
-            </button>
+              {button1}
+              {button2}
           </span>
         </li>
       );

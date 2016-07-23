@@ -9,16 +9,21 @@ Meteor.methods({
       reviews: "",
       accepts: 0,
       rejects: 0,
-      author: this.userId
+      author: this.userId,
+      submitted: false
     });
   },
 
-  'paper.remove': function(paper) {
-    return papers_submit.remove(paper);
+  'paper.remove': function(paper_id) {
+    return papers_submit.remove(paper_id);
   },
 
   'paper_review.update': function(paper, content) {
     return papers_submit.update(paper._id, {$set: { reviews: content } });
+  },
+  
+  'paper.submit': function(paper_id) {
+    return papers_submit.update(paper_id, {$set: { submitted: true }, });
   },
 
   'paper.review': function(paper, email) {
