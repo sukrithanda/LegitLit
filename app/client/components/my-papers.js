@@ -4,7 +4,7 @@ import {papers_submit} from './../../imports/collections/papers';
 import { Link } from 'react-router';
 
 class MySubmissions extends Component {
-  
+
   onPaperView(bin) {
     Meteor.call('bins.remove', bin);
   }
@@ -47,7 +47,7 @@ class MySubmissions extends Component {
 
       return(
         <li className="list-group-item" key={paper._id}>
-          <Link to={url}> paper_submit {paper._id} </Link>
+          <a href={paper.fileobj}> paper {paper._id} </a>          
           <span className="pull-right">
               {button1}
               {button2}
