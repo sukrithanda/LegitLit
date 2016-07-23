@@ -31,7 +31,7 @@ class MySubmissions extends Component {
       var button1;
       var button2;
       if (paper.submitted){
-          button1 = <button className="btn btn-primary" onClick={this.handleStatus.bind(this, url)}>Status</button>
+          button1 = <Link to={url}><button className="btn btn-primary">Status</button></Link>
       }
       else{
           button1 = <button className="btn btn-success" onClick={this.handleSubmit.bind(this, paper._id)}>Submit</button>
@@ -40,7 +40,7 @@ class MySubmissions extends Component {
 
       return(
         <li className="list-group-item" key={paper._id}>
-          <Link to={url}> View {paper._id} </Link>
+          <Link to={url}> paper_submit {paper._id} </Link>
           <span className="pull-right">
               {button1}
               {button2}
