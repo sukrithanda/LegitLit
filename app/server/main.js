@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import {papers_submit, papers_review} from './../imports/collections/papers';
+import {papers_submit} from './../imports/collections/papers';
 
 Meteor.startup(() => {
   Meteor.publish('papers_submit', function() {
@@ -13,7 +13,8 @@ Meteor.startup(() => {
     const email = user.emails[0].address;
 
     return papers_submit.find({
-      reviewers:{ $elemMatch: { $eq: email }}
+      reviewers:{ $elemMatch: { $eq: email }},
+      author:  {$ne: this.userId}
     });
   });
 });

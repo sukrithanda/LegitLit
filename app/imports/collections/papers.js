@@ -6,7 +6,7 @@ Meteor.methods({
       createdAt: new Date(),
       fileobj: file,
       reviewers: [],
-      reviews: [],
+      reviews: "",
       accepts: 0,
       rejects: 0,
       author: this.userId
@@ -17,30 +17,14 @@ Meteor.methods({
     return papers_submit.remove(paper);
   },
 
-  /*'paper.update': function(paper, content) {
-    return papers_submit.update(paper._id, {$set: { fileobj: content } });
-  },*/
+  'paper_review.update': function(paper, content) {
+    return papers_submit.update(paper._id, {$set: { reviews: content } });
+  },
 
   'paper.review': function(paper, email) {
-    return papers_submit.update(paper._id, {$push: { sharedWith: email} });
+    return papers_submit.update(paper._id, {$push: { reviewers: email} });
   }
 
-  /*'papers.submit': function(paper, email) {
-    return papers_submit.update(paper._id, {$push: { sharedWith: email} });
-  }*/
 });
 
-var createFileObj = function(fileObj, readStream, writeStream) {
-  gm(readStream, fileObj.name()).stream().pipe(writeStream);
-};
-
-/*papers_submit = new FS.Collection("papers-submit", {
-  paper: [
-      new FS.Store.GridFS("paper_pdf", { transformWrite: createFileObj }),
-  ],
-
-
-});*/
-
 export const papers_submit = new Mongo.Collection('papers_submit');
-//export const papers_review = new Mongo.Collection('papers-review');

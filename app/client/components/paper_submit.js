@@ -31,7 +31,7 @@ class PaperSubmit extends Component {
 
       buffer = reader.result;
       Meteor.call('paper.insert', buffer, () => {
-        browserHistory.push(`/views/${paperId}`);
+      //  browserHistory.push(`/views/${paperId}`);
       });
     }
 

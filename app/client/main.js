@@ -6,14 +6,15 @@ import MainApp from './components/mainapp';
 import PaperReview from './components/my-reviews';
 import PaperView from './components/my-papers';
 import OneView from './components/one-view';
-import {papers_submit, papers_review} from './../imports/collections/papers';
+import ReviewEditor from './components/review_editor';
+import {papers_submit} from './../imports/collections/papers';
 
 
 const routes = (
   <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={MainApp} />
-        <Route path="review/:paperId" component={PaperReview} />
+        <Route path="review/:paperId" component={ReviewEditor} />
         <Route path="view/:paperId" component={OneView} />
       </Route>
   </Router>

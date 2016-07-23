@@ -1,26 +1,34 @@
 import React, {Component} from 'react';
 import {createContainer} from 'meteor/react-meteor-data';
 import {papers_submit} from './../../imports/collections/papers';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class MyReviews extends Component {
 
-  onPaperReview(bin) {
-    this.transitionTo('pages');
+  onReviewClick(event, review_url){
+      //event.preventDefault();
+      browserHistory.push(review_url);
   }
 
   renderList(){
-    return this.props.papers.map(paper =>{
+
+    for(var i = this.props.papers1.length - 1; i >= 0; i--) {
+      if(this.props.papers1[i].author === Meteor.userId()) {
+       this.props.papers1.splice(i, 1);
+      }
+    }
+
+    return this.props.papers1.map(paper =>{
       const view_url =`/view/${paper._id}`;
       const review_url =`/review/${paper._id}`;
 
       return(
         <li className="list-group-item" key={paper._id}>
-          <Link to={view_url}> paper {paper._id} </Link>
+          <a href={paper.fileobj}> paper {paper._id} </a>
           <span className="pull-right">
-            <span className="input-group-btn">
-                <Link to={review_url} >Review Paper</Link>
-            </span>
+
+              <Link to={review_url}> REVIEW </Link>
+
           </span>
         </li>
       );
@@ -44,6 +52,6 @@ export default createContainer(() => {
 
   Meteor.subscribe('papers_review');
 
-
-  return { papers: papers_submit.find({}).fetch()};
+  return { papers1: papers_submit.find({ author:  {$ne: this.userId}
+}).fetch()};
 }, MyReviews);

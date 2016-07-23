@@ -5,11 +5,14 @@ import { Link } from 'react-router';
 
 class MySubmissions extends Component {
 
-  onPaperView(bin) {
-    Meteor.call('bins.remove', bin);
-  }
-
   renderList(){
+
+    for(var i = this.props.papers.length - 1; i >= 0; i--) {
+      if(this.props.papers[i].author !== Meteor.userId()) {
+       this.props.papers.splice(i, 1);
+      }
+    }
+
     return this.props.papers.map(paper =>{
       const url =`/view/${paper._id}`;
       return(
