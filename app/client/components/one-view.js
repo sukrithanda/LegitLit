@@ -34,6 +34,15 @@ class OneView extends Component{
 
     renderStatus(){
 
+      if((this.props.paper.accepts+this.props.paper.rejects) < 2){
+        return(
+          <div>
+            <button type="button" className="btn btn-warning btn-lg disabled">Reviews in Progress</button>
+          </div>
+
+        );
+      }
+
       if(this.props.paper.accepts > 1){
 
             return(
