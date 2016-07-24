@@ -30,7 +30,7 @@ class PaperSubmit extends Component {
       //var buffer = new Uint8Array(reader.result) // convert to binary
 
       buffer = reader.result;
-      Meteor.call('paper.insert', buffer, () => {
+      Meteor.call('paper.insert', buffer, files[0].name, () => {
       //  browserHistory.push(`/views/${paperId}`);
       });
     }

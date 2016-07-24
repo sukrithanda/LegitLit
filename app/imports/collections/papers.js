@@ -1,11 +1,12 @@
 import {Mongo} from 'meteor/mongo';
 
 Meteor.methods({
- 'paper.insert': function(file) {
+ 'paper.insert': function(file, filename) {
     return papers_submit.insert({
       createdAt: new Date(),
       address: "",
       fileobj: file,
+      name: filename,
       reviewers: ['reviewer1@gmail.com', 'reviewer2@gmail.com'],
       reviews: '',
       reviewArray: [],

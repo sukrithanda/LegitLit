@@ -24,7 +24,7 @@ class MyReviews extends Component {
 
       return(
         <li className="list-group-item" key={paper._id}>
-          <a href={paper.fileobj}> paper {paper._id} </a>
+          <a href={paper.fileobj}> {paper.name} </a>
           <span className="pull-right">
 
               <Link to={review_url}> REVIEW </Link>
