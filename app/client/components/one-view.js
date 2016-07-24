@@ -72,29 +72,36 @@ class OneView extends Component{
           return(
             <div>
                 <br/>
-                <button className="btn btn-primary" onClick={this.handleOpen.bind(this)}>View Paper</button>
-                <br/>
-                <br/>
-                <h2>Reviews</h2>
-                <ul>
-                    {this.renderReviewList()}
-                </ul>
-                <div className="row">
-                    <div className="col-sm-6">
-                        <h4>Accepted  <span className="badge">{this.props.paper.accepts}</span></h4>
-                    </div>
-                    <div className="col-sm-6">
-                        <h4>Rejected  <span className="badge">{this.props.paper.rejects}</span></h4>
+                <div className="container">
+                    <div className="panel panel-default">
+                          <h3>Overall Status</h3>
+                              <div className="panel-body">
+                                  {this.renderStatus()}
+                              </div>
                     </div>
                 </div>
+                <div className="container">
+                    <div className="panel panel-default">
+                        <h3>Reviews</h3>
+                             <div className="panel-body">
+                                <ul>
+                                    {this.renderReviewList()}
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="panel panel-default">
+                        <div className="panel-body">
+                            <h4 className="col-lg-6">Accepted  <span className="badge">{this.props.paper.accepts}</span></h4>
+                            <h4 className="col-lg-6">Rejected  <span className="badge">{this.props.paper.rejects}</span></h4>
 
-                <div>
-                  <h4>Overall Status</h4>
-
-                      {this.renderStatus()}
-
-
-
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div className="text-center">
+                    <button className="btn btn-primary" onClick={this.handleOpen.bind(this)}>View Paper</button>
                 </div>
             </div>
 
