@@ -6,8 +6,9 @@ Meteor.methods({
       createdAt: new Date(),
       address: "",
       fileobj: file,
-      reviewers: [],
-      reviews: [],
+      reviewers: ['reviewer1@gmail.com', 'reviewer2@gmail.com'],
+      reviews: '',
+      reviewArray: [],
       reviewed: [],
       accepts: 0,
       rejects: 0,
@@ -24,15 +25,29 @@ Meteor.methods({
     return papers_submit.update(paper._id, {$set: { reviews: content } });
   },
 
-  'paper_review.submit': function(paper, content, vote) {
-  //  return papers_submit.update(paper._id, {$set: { reviews: content } });
+  'paper_review.submit': function(paper, content, vote, email, reviewers) {
+  //  return papers_submit.update(paper._id, {$set: { reviews: content }
+    var temp = [];
+    //console.log(reviewers);
+    for (var i=0; i < reviewers.length; i++){
+        console.log(email);
+        console.log('2');
+        console.log(reviewers[i]);
+        if (reviewers[i] !== email.address){
+            temp.push(reviewers[i]);
+        }
+    }
     if(vote == true){
-      return papers_submit.update(paper._id, { $inc: {accepts: 1}});
+      papers_submit.update(paper._id, { $inc: {accepts: 1}});
     }
     else{
-      return papers_submit.update(paper._id, { $inc: {rejects: 1}});
+      papers_submit.update(paper._id, { $inc: {rejects: 1}});
     }
-
+    //console.log(email);
+    papers_submit.update(paper._id, {$set: { reviewers: [] }}, {multi: true} )
+    papers_submit.update(paper._id, {$push: {reviewArray: content}})
+    papers_submit.update(paper._id, {$set: {reviews: ''}})
+    return papers_submit.update(paper._id, {$set: { reviewers: temp} })
   },
 
   'paper.submit': function(paper_id) {

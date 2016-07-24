@@ -3,6 +3,14 @@ import {createContainer} from 'meteor/react-meteor-data';
 import {papers_submit} from './../../imports/collections/papers';
 import { Link } from 'react-router';
 
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+var abi = [{"constant":false,"inputs":[{"name":"_paper_id","type":"string"},{"name":"_review","type":"string"}],"name":"rejectPaper","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_paper_id","type":"string"},{"name":"_review","type":"string"}],"name":"acceptPaper","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_paper_id","type":"string"}],"name":"submitPaper","outputs":[{"name":"id","type":"string"}],"type":"function"},{"constant":true,"inputs":[],"name":"test","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"inputs":[],"type":"constructor"}];
+
+
+var MyContract = web3.eth.contract(abi);
+var myContractInstance = MyContract.at('0xdbfd3fe74b192e8915ed16ff9f0e8e5fe66c6202');
+
 class MySubmissions extends Component {
 
   onPaperView(bin) {
@@ -10,9 +18,18 @@ class MySubmissions extends Component {
   }
 
   handleSubmit(id){
-      console.log("submit");
-      Meteor.call('paper.submit', id)
-
+      //console.log(myContractInstance.test());
+      web3.eth.defaultAccount = web3.eth.accounts[0];
+      myContractInstance.submitPaper(id, function(err, results){
+           if(err) {
+               console.log(err);
+           }
+           else {
+               console.log(results);
+               console.log("submit");
+               Meteor.call('paper.submit', id);
+           }
+       });
   }
 
   handleRemove(id){
@@ -57,7 +74,6 @@ class MySubmissions extends Component {
       );
     });
   }
-
   render(){
     return (
       <div>

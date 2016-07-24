@@ -10,7 +10,7 @@ class OneView extends Component{
     }
 
     renderReviewList(){
-        return this.props.paper.reviews.map(review =>{
+        return this.props.paper.reviewArray.map(review =>{
             return (
                 <li key={review}>{review}</li>
             );
@@ -39,7 +39,7 @@ class OneView extends Component{
                         <h4>Accepted  <span className="badge">{this.props.paper.accepts}</span></h4>
                     </div>
                     <div className="col-sm-6">
-                        <h4>Rejected  <span className="badge">{this.props.paper.accepts}</span></h4>
+                        <h4>Rejected  <span className="badge">{this.props.paper.rejects}</span></h4>
                     </div>
                 </div>
             </div>
