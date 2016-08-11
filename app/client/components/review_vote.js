@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 
 web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
-var abi = [{"constant":false,"inputs":[{"name":"_paper_id","type":"string"},{"name":"_review","type":"string"}],"name":"rejectPaper","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_paper_id","type":"string"},{"name":"_review","type":"string"}],"name":"acceptPaper","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_paper_id","type":"string"}],"name":"submitPaper","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"test","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"inputs":[],"type":"constructor"}];
-
+var abi = [{"constant":false,"inputs":[{"name":"_paper_id","type":"string"},{"name":"_review","type":"string"}],"name":"rejectPaper","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_paper_id","type":"string"},{"name":"_review","type":"string"}],"name":"acceptPaper","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_paper_id","type":"string"}],"name":"submitPaper","outputs":[{"name":"id","type":"string"}],"type":"function"},{"constant":true,"inputs":[],"name":"test","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"inputs":[],"type":"constructor"}];
 
 var MyContract = web3.eth.contract(abi);
-var myContractInstance = MyContract.at('0xdbfd3fe74b192e8915ed16ff9f0e8e5fe66c6202');
+var myContractInstance = MyContract.at('0xadf7d81b85a291c6e52e89546fd84646e9493dc6');
+
 class ReviewVote extends Component {
 
 
